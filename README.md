@@ -1,0 +1,2 @@
+# monitoring_electricity_meter
+Мониторинг электросчетчиков
