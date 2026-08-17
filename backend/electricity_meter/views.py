@@ -36,7 +36,7 @@ def electro_counters_value(request):
         'counters': counters,
         'menu': menu,
     }
-    return render(request, 'cardboard_production/electro_counters_value.html', context=data)
+    return render(request, 'electricity_meter/electro_counters_value.html', context=data)
 
 
 def electro_counters_statistics_for_the_day(request):
@@ -67,7 +67,7 @@ def electro_counters_statistics_for_the_day(request):
         'times': time,
         'menu': menu,
     }
-    return render(request, 'cardboard_production/electro_counters.html', context=data)
+    return render(request, 'electricity_meter/electro_counters.html', context=data)
 
 
 def electro_counters_statistics_for_the_month(request):
@@ -101,7 +101,7 @@ def electro_counters_statistics_for_the_month(request):
         'times': time,
         'menu': menu,
     }
-    return render(request, 'cardboard_production/electro_counters.html', context=data)
+    return render(request, 'electricity_meter/electro_counters.html', context=data)
 
 
 def reports_for_the_month(request):
@@ -136,4 +136,4 @@ def reports_for_the_month(request):
         'form': form,
         'menu': menu,
     }
-    return render(request, 'cardboard_production/electro_counters_report.html', context=data)
+    return render(request, 'electricity_meter/electro_counters_report.html', context=data)
