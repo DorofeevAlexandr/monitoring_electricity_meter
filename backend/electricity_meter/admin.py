@@ -1,7 +1,7 @@
 import datetime as dt
 from django.contrib import admin, messages
 from django.utils.safestring import mark_safe
-from backend.electricity_meter.models import ElectroCounters
+from electricity_meter.models import ElectroCounters
 
 admin.site.site_header = "Панель администрирования"
 admin.site.index_title = "Электросчетчики"

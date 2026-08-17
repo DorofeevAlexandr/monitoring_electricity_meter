@@ -8,7 +8,7 @@ import operator
 import random
 import xlsxwriter
 
-from backend.electricity_meter.models import ElectroCounters
+from electricity_meter.models import ElectroCounters
 
 
 def get_counters_params():

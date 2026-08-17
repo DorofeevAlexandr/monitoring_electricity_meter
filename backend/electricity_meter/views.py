@@ -6,8 +6,8 @@ import io
 import mimetypes
 import xlsxwriter
 
-from backend.electricity_meter.forms import ReadDateForElectroCounters, ReadMonthForElectroCounters
-from backend.electricity_meter.work_with_electrocouners import (get_counters_from_base, client_influxdb, read_electro_counters_values,
+from electricity_meter.forms import ReadDateForElectroCounters, ReadMonthForElectroCounters
+from electricity_meter.work_with_electrocouners import (get_counters_from_base, client_influxdb, read_electro_counters_values,
                                                                 get_reports_electro_counters, calculate_result_value, save_report_in_excel)
 
 
