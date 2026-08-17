@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<ul class="list-articles">
+
+<div class="tabs">
+
+    <table width="100%" border="1">
+        <tr>
+            <th> № </th>
+            <th>Потребитель</th>
+            <th>Показания на счетчике кВт/ч</th>
+            <th> * Коэффициент трансформации</th>
+            <th>Текущие даные кВт/ч</th>
+        </tr>
+
+        {% for c in counters %}
+            <tr>
+                <th>{{c.number}}</th>
+                <td>{{c.client_name}}</td>
+                <td>{{c.energy_indic}}</td>
+                <td>{{c.transformation_coefficient}}</td>
+                <td>{{c.energy}}</td>
+            </tr>
+        {% endfor %}
+
+    </table>
+
+</div>
+
+</ul>
+
+{% endblock %}

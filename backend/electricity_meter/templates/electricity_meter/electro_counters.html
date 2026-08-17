@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<ul class="list-articles">
+
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <p><button type="submit">Обновить</button></p>
+    </form>
+
+<div class="tabs">
+
+                        <!-- bar chart canvas element -->
+            <canvas id="myChart" height="150%"></canvas>
+            <script>
+            var ctx = document.getElementById('myChart');
+
+            var myChart = new Chart(ctx, {
+
+            data: {
+labels : [{% for item in times %} "{{item}}", {% endfor %}],
+
+datasets: [
+{% for counter, values in count_values.items %}
+                {
+                {% if counter == 'Суммарное потребление' %}
+                    type: 'line',
+                    order: 0,
+                    borderColor: '{{ values.color }}',
+                {% else %}
+                    type: 'bar',
+                    order: 1,
+                {% endif %}
+                label: '{{counter}}, кВт/ч',
+                data : [
+                {% for value in values.count_val %}
+                    {{value }} / 1000,
+                {% endfor %}
+              ],
+
+              backgroundColor: '{{ values.color }}',
+
+            },
+{% endfor %}
+]},
+           options: {
+                plugins: {
+                  title: {
+                    display: true,
+                    text: '{{title}}'
+                  },
+                },
+                responsive: true,
+                scales: {
+                  x: {
+                    stacked: true,
+                  },
+                  y: {
+                    stacked: true
+                  }
+                }
+              }
+
+            });
+
+            </script>
+
+</div>
+
+</ul>
+
+{% endblock %}

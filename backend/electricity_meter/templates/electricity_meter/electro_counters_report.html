@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<ul class="list-articles">
+
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <p><button type="submit" name="b_update">Обновить</button></p>
+        <p><button type="submit" name="b_save">Сохранить отчёт</button></p>
+    </form>
+
+    <hr>
+
+    <div class="tabs">
+     {% for client_name in reports.keys %}
+        <input type="radio" name="inset" value="" id="tab_{{forloop.counter}}" checked>
+        <label for="tab_{{forloop.counter}}">{{client_name}}</label>
+     {% endfor %}
+
+        {% for client_name, counter_values in reports.items %}
+        <div id="txt_{{forloop.counter}}">
+
+        <table width="100%" border="1">
+            <tr>  <th width="100%" colspan="32" > Сутки потребления электроэнергии </th> </tr>
+            <tr>
+                <th> Часы </th>
+                {% for _ in counter_values.0 %}
+                    <th> {{forloop.counter}} </th>
+                {% endfor %}
+            </tr>
+
+            {% for hour_values in counter_values %}
+                {% if not forloop.last %}
+                <tr>
+                    <th> {{forloop.counter|add:"-1"}} - {{forloop.counter}} </th>
+                    {% for day_values in hour_values %}
+                        <td> {{day_values}} </td>
+                    {% endfor %}
+                </tr>
+                {% else %}
+                     <tr>
+                        <th> Итого за сутки </th>
+                        {% for day_values in hour_values %}
+                            <td> {{day_values|floatformat:2}} </td>
+                        {% endfor %}
+                    </tr>
+                {% endif %}
+            {% endfor %}
+
+        </table>
+        </div>
+        {% endfor %}
+
+    </div>
+
+</ul>
+
+{% endblock %}
