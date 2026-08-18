@@ -61,7 +61,7 @@ def electro_counters_statistics_for_the_day(request):
         if form.is_valid():
             select_date = form.cleaned_data.get('day', None)
             if select_date:
-                title = f'Потребление электроэнергии - Данные за {select_date.strftime('%d %B %Y')}г.'
+                title = f'{DEPARTMENT_NAME} - Потребление электроэнергии - Данные за {select_date.strftime('%d %B %Y')}г.'
                 client = client_influxdb()
                 time, count_values = read_electro_counters_values(client=client,
                                                                   date=select_date,
@@ -91,7 +91,7 @@ def electro_counters_statistics_for_the_month(request):
         form = ReadMonthForElectroCounters(request.POST, request.FILES)
         if form.is_valid():
             calendar_date = form.cleaned_data.get('start_day', None)
-            title = f'Потребление электроэнергии - Данные за {calendar_date.strftime('%B %Y')}г.'
+            title = f'{DEPARTMENT_NAME} - Потребление электроэнергии - Данные за {calendar_date.strftime('%B %Y')}г.'
             start_date = dt.date(year=calendar_date.year,
                                  month=calendar_date.month,
                                  day=1)
@@ -123,7 +123,7 @@ def reports_for_the_month(request):
         form = ReadMonthForElectroCounters(request.POST, request.FILES)
         if form.is_valid():
             calendar_date = form.cleaned_data.get('start_day', None)
-            title = f'Потребление электроэнергии - Данные за {calendar_date.strftime('%B %Y')}г.'
+            title = f'{DEPARTMENT_NAME} - Потребление электроэнергии - Данные за {calendar_date.strftime('%B %Y')}г.'
             start_date = dt.date(year=calendar_date.year,
                                  month=calendar_date.month,
                                  day=1)
