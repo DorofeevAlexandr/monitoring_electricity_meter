@@ -12,5 +12,7 @@ urlpatterns = [
          name='electro_counters_statistics_for_the_month'),
     path('reports_month', views.reports_for_the_month,
          name='reports'),
+    path('additional_department_path', views.go_additional_department,
+         name='additional_department_path'),
     path('tuning', views.tuning, name='tuning'),
 ]
