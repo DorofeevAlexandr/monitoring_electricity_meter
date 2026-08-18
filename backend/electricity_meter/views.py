@@ -14,6 +14,7 @@ from electricity_meter.work_with_electrocouners import (get_counters_from_base, 
 
 
 load_dotenv()
+DEPARTMENT_NAME = os.environ.get("DEPARTMENT_NAME")
 ADDITIONAL_DEPARTMENT_PATH = os.environ.get("ADDITIONAL_DEPARTMENT_PATH")
 ADDITIONAL_DEPARTMENT_NAME = os.environ.get("ADDITIONAL_DEPARTMENT_NAME")
 
@@ -41,7 +42,7 @@ def go_additional_department(request):
 
 def electro_counters_value(request):
     counters = get_counters_from_base()
-    title = f'Показания электросчетчиков'
+    title = f'{DEPARTMENT_NAME} - Показания электросчетчиков'
     data = {
         'title': title,
         'counters': counters,
@@ -54,7 +55,7 @@ def electro_counters_statistics_for_the_day(request):
     count_values = []
     time = []
     counters = get_counters_from_base()
-    title = f'Потребление электроэнергии - Данные за день'
+    title = f'{DEPARTMENT_NAME} - Потребление электроэнергии - Данные за день'
     if request.method == 'POST':
         form = ReadDateForElectroCounters(request.POST, request.FILES)
         if form.is_valid():
@@ -85,7 +86,7 @@ def electro_counters_statistics_for_the_month(request):
     count_values = []
     time = []
     counters = get_counters_from_base()
-    title = f'Потребление электроэнергии - Данные за месяц'
+    title = f'{DEPARTMENT_NAME} - Потребление электроэнергии - Данные за месяц'
     if request.method == 'POST':
         form = ReadMonthForElectroCounters(request.POST, request.FILES)
         if form.is_valid():
@@ -117,7 +118,7 @@ def electro_counters_statistics_for_the_month(request):
 
 def reports_for_the_month(request):
     reports = {}
-    title = f'Потребление электроэнергии - Данные за месяц'
+    title = f'{DEPARTMENT_NAME} - Потребление электроэнергии - Данные за месяц'
     if request.method == 'POST':
         form = ReadMonthForElectroCounters(request.POST, request.FILES)
         if form.is_valid():
